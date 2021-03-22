@@ -1,0 +1,20 @@
+crosscicd:
+  script:
+    - df -h
+    - docker run -v /var/run/docker.sock:/var/run/docker.sock docker
+  tags:
+    - crosscicd
+
+linux:
+  script:
+    - df -h
+    - docker run -v /var/run/docker.sock:/var/run/docker.sock docker
+  tags:
+    - linux
+
+docker:
+  script:
+    - df -h
+    - docker run -v /var/run/docker.sock:/var/run/docker.sock docker
+  tags:
+    - docker
