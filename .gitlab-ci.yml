@@ -1,7 +1,9 @@
 crosscicd:
+  services:
+  - docker:dind
   script:
     - df -h
-    - docker run -v /var/run/docker.sock:/var/run/docker.sock docker
+    - docker run --privileged ubuntu df -h
   tags:
     - crosscicd
 
@@ -11,7 +13,7 @@ linux:
   - docker:dind
   script:
     - df -h
-    - docker run -v /var/run/docker.sock:/var/run/docker.sock docker
+    - docker run --privileged ubuntu df -h
   tags:
     - linux
 
@@ -21,6 +23,6 @@ docker:
   - docker:dind
   script:
     - df -h
-    - docker run -v /var/run/docker.sock:/var/run/docker.sock docker
+    - docker run --privileged ubuntu df -h
   tags:
     - docker
