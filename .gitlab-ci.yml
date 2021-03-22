@@ -6,6 +6,9 @@ crosscicd:
     - crosscicd
 
 linux:
+  image: docker:latest
+  services:
+  - docker:dind
   script:
     - df -h
     - docker run -v /var/run/docker.sock:/var/run/docker.sock docker
@@ -13,6 +16,9 @@ linux:
     - linux
 
 docker:
+  image: docker:latest
+  services:
+  - docker:dind
   script:
     - df -h
     - docker run -v /var/run/docker.sock:/var/run/docker.sock docker
