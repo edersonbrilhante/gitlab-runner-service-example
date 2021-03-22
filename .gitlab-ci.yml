@@ -1,28 +1,27 @@
-crosscicd:
+.test:
+  image: docker:latest
   services:
-  - docker:dind
+    - name: docker:dind
+      alias: thedockerhost
+  variables:
+    DOCKER_HOST: tcp://thedockerhost:2375/
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
   script:
     - df -h
     - docker run --privileged ubuntu df -h
+
+crosscicd:
+  extends: .test
   tags:
     - crosscicd
 
 linux:
-  image: docker:latest
-  services:
-  - docker:dind
-  script:
-    - df -h
-    - docker run --privileged ubuntu df -h
+  extends: .test
   tags:
     - linux
 
 docker:
-  image: docker:latest
-  services:
-  - docker:dind
-  script:
-    - df -h
-    - docker run --privileged ubuntu df -h
+  extends: .test
   tags:
     - docker
