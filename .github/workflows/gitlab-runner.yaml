@@ -17,4 +17,4 @@ jobs:
           registration-token: "${{ github.event.client_payload.registration_token }}"
           docker-image: "docker:19.03.12"
           name: ${{ github.run_id }}
-          tag-list: "crosscicd"
+          tag-list: "${{ github.event.client_payload.tag_list }}"
